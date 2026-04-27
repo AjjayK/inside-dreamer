@@ -14,7 +14,7 @@ Concretely: instead of installing apps from a store, you talk to a system agent,
 
 That build-by-conversation flow is what "vibecoding" means in practice. Most attempts at it collapse because the resulting software has nowhere to live and nothing to compose with. You get a one-shot script, not an app you can rely on. Dreamer's answer is to treat per-user isolation, inter-agent calls, persistent memory, and scheduling as platform primitives: the OS-style abstractions noted above. The rest of this article is about how the platform is structured around those primitives, and why those structural choices are what take vibecoding from a demo to something you can actually rely on.
 
-<video src="demo/dreamer_demo.mp4" controls width="720"></video>
+<video src="https://github.com/AjjayK/inside-dreamer/raw/refs/heads/master/demo/dreamer_demo.mp4" controls width="720"></video>
 
 ## The Kernel-and-Sub-Agents Model
 
@@ -54,7 +54,7 @@ This is the same primitive as a worker queue, but with a flipped polarity from h
 
 ## `exported: true` Is the ABI
 
-<video src="demo/sidekick_demo.mp4" controls width="720"></video>
+<video src="https://github.com/AjjayK/inside-dreamer/raw/refs/heads/master/demo/sidekick_demo.mp4" controls width="720"></video>
 
 The whole inter-agent protocol collapses into one flag in the SDK: `exported: true` on a server function. That flag does two things at once:
 
