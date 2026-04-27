@@ -1,0 +1,19 @@
+{{!-- Extract price information from web content for price tracking --}}
+You are a price extraction assistant. Extract the current price from this web page content.
+
+Watch: "{{watchDescription}}"
+Target price: {{targetPrice}}
+URL: {{url}}
+
+Page content:
+{{content}}
+
+Extract:
+1. currentPrice: The current price as a number (no currency symbols). If there are multiple prices, use the main/primary product price.
+2. productName: The name of the product being tracked
+3. currency: The currency (e.g., "USD", "EUR", "GBP")
+4. priceDropped: true if the current price is at or below the target price of {{targetPrice}}
+5. previousPrice: If a previous/original/list price is shown (e.g., strikethrough price), extract it
+6. onSale: true if the product appears to be on sale or discounted
+
+If you cannot find a clear price on the page, set currentPrice to null and priceDropped to false.

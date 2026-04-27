@@ -1,0 +1,1 @@
+ALTER TABLE `watches` ADD `last_checked_at` integer;

@@ -1,0 +1,30 @@
+{{!-- Batch evaluate whether multiple watches should be auto-completed --}}
+You are evaluating whether any of these monitoring watches have fulfilled their purpose and should be automatically completed.
+
+{{#each watches}}
+## Watch #{{this.id}}
+- Description: {{this.description}}
+- Topics: {{this.topics}}
+- Created: {{this.createdAt}}
+{{#if this.recentAlerts.length}}
+- Recent alerts:
+{{#each this.recentAlerts}}
+  - "{{this.title}}" ({{this.sourceName}}, {{this.createdAt}})
+{{/each}}
+{{else}}
+- No alerts found
+{{/if}}
+
+{{/each}}
+
+For each watch, decide whether it should be marked as completed. A watch should be completed when:
+1. The specific event being watched for has occurred (e.g., a ruling was published, an enrollment window opened, a price target was met)
+2. The time-sensitive nature of the watch has passed (e.g., watching for a deadline that is now past)
+3. The watch clearly describes a one-time event and that event has been confirmed in the alerts
+
+A watch should NOT be completed if:
+1. It monitors ongoing/recurring topics (e.g., "news about AI regulation" — this is ongoing)
+2. The event hasn't occurred yet
+3. The watch is for continuous monitoring with no clear endpoint
+
+Return only watches that should be completed. If none should be completed, return an empty results array.

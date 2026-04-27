@@ -1,0 +1,22 @@
+{{!-- Create a digest summary of recent alerts --}}
+Create a concise daily digest summary of these alerts for the user.
+
+Alerts:
+{{#each alerts}}
+- **{{this.title}}** (Watch: "{{this.watchDescription}}")
+  {{#if this.fullContent}}
+  Report: {{this.fullContent}}
+  {{else}}
+  {{this.snippet}}
+  {{/if}}
+  Why: {{this.explanation}}
+  Source: {{this.sourceName}}
+{{/each}}
+
+Group related alerts together. For each group:
+- Lead with the most important item
+- Be concise but informative
+- Include key details from the reports (numbers, dates, names) — don't just say "an article was found"
+- Include why each item matters based on the user's watch
+
+Keep the total summary under 500 words. Use markdown formatting.

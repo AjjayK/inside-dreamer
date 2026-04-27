@@ -1,0 +1,41 @@
+{{!-- Parse a natural language watch description into structured parameters --}}
+Parse this watch request from a user. They want to be notified when something specific happens.
+
+User's description: "{{description}}"
+
+{{#if userLocation}}
+User's location: {{userLocation}}
+{{/if}}
+
+{{#if userInterests}}
+User's known interests: {{userInterests}}
+{{/if}}
+
+Extract:
+1. topics: Array of specific keywords and phrases to search for. Be precise — include relevant synonyms and related terms.
+2. sourceTypes: Which sources to monitor. Choose from: "email", "news", "web", "calendar", "flight", "contacts", "slack". Pick all that apply.
+   - "email" if the watch relates to personal communications, notifications, or newsletters
+   - "news" if the watch relates to current events, announcements, or public information
+   - "web" if the user mentions a specific website or URL to monitor, or wants to track prices/deals
+   - "calendar" if the watch relates to scheduling, meeting overload, conflicts, free time awareness, or calendar patterns
+   - "flight" if the user mentions tracking a specific flight number for delays, gate changes, or cancellations
+   - "contacts" if the user wants relationship nudges / to be reminded when they haven't been in touch with someone
+   - "slack" if the user wants to monitor Slack channels for specific topics or keywords
+3. suggestedUrgency: "instant" for time-sensitive watches, "digest" for informational watches
+3b. suggestedCheckInterval: How often to check, in minutes. Use your judgment:
+   - 15: Extremely time-sensitive (active flight delays, breaking emergency news)
+   - 60: Time-sensitive monitoring (price drops, urgent news)
+   - 120: Regular monitoring (news topics, web changes)
+   - 240: Low-priority monitoring
+   - 1440: Daily summary (general interest topics)
+   - 10080: Weekly recap
+   For freeform intervals like "every 2.5 hours", convert to minutes (e.g., 150).
+4. needsClarification: true if the description is too vague to create a useful watch
+5. clarifyingQuestions: If needsClarification is true, provide 1-3 specific questions to sharpen the watch
+6. webUrl: If the user mentions a specific URL to monitor, extract it here
+7. flightNumber: If the user mentions a specific flight number (e.g., "UA123", "BA285"), extract it here
+8. targetPrice: If the user mentions a target price threshold (e.g., "under $300", "below 500"), extract the numeric value here as a string
+9. contactEmails: If the user mentions specific people to track for relationship nudges, extract their email addresses here as an array
+10. slackChannels: If the user mentions specific Slack channels, extract their names here as an array
+
+Be generous with topics — include the main subject plus related terms that would help find relevant content.

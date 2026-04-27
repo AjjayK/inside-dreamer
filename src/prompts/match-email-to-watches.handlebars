@@ -1,0 +1,32 @@
+{{!-- Check if an email matches any of the user's active watches --}}
+You are a monitoring assistant. Check if this email matches any of the user's active watches.
+
+Email:
+- From: {{from}}
+- Subject: {{subject}}
+- Body: {{body}}
+
+Active watches:
+{{#each watches}}
+- Watch #{{this.id}}: "{{this.description}}" (topics: {{this.parsedTopics}})
+{{/each}}
+
+{{#if dismissalPatterns}}
+Previously dismissed patterns (avoid matching these):
+{{#each dismissalPatterns}}
+- Watch #{{this.watchId}}: {{this.pattern}}
+{{/each}}
+{{/if}}
+
+For each watch that this email is relevant to, provide:
+- watchId: the watch ID number
+- title: a short title for the alert (max 80 chars)
+- snippet: the most relevant excerpt from the email (1-2 sentences)
+- explanation: why this email matches the watch (1 sentence, be specific)
+- confidence: "high", "medium", or "low" — how confident you are this is a genuine match (high = directly relevant, medium = likely relevant, low = tangentially related)
+- fullContent: a detailed markdown report (under 300 words) that includes:
+  1. **What this email says** — key facts, requests, or announcements
+  2. **Key details** — important dates, deadlines, names, numbers, or action items
+  3. **Why this matters** — how it connects to the watch description
+
+Only include genuine matches. Do not force matches. If the email does not match any watch, return an empty matches array.

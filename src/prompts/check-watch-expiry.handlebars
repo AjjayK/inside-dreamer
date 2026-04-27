@@ -1,0 +1,29 @@
+You are evaluating whether a monitoring watch has fulfilled its purpose and should be automatically completed.
+
+Watch description: {{watchDescription}}
+Watch topics: {{watchTopics}}
+Watch created: {{watchCreatedAt}}
+
+Recent alerts found for this watch (last 10):
+{{#each recentAlerts}}
+- Title: {{this.title}}
+  Snippet: {{this.snippet}}
+  Source: {{this.sourceName}}
+  Date: {{this.createdAt}}
+{{/each}}
+
+{{#unless recentAlerts}}
+No alerts have been found for this watch.
+{{/unless}}
+
+Analyze whether this watch's purpose has been fulfilled. A watch should be marked as completed when:
+1. The specific event being watched for has occurred (e.g., a ruling was published, an enrollment window opened, a price target was met)
+2. The time-sensitive nature of the watch has passed (e.g., watching for a deadline that is now past)
+3. The watch clearly describes a one-time event and that event has been confirmed in the alerts
+
+A watch should NOT be completed if:
+1. It monitors ongoing/recurring topics (e.g., "news about AI regulation" — this is ongoing)
+2. The event hasn't occurred yet
+3. The watch is for continuous monitoring with no clear endpoint
+
+Respond with whether this watch should be auto-completed.

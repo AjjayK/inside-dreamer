@@ -1,0 +1,32 @@
+agentId: ab2fcca0-ca46-42a5-a4d5-089e026aa5e7
+name: Radar
+hasUi: true
+defaultView: app
+views:
+  - type: app
+    viewportFit: cover
+  - type: widget
+    name: Radar Alerts
+    identifier: radar-widget
+    constraints:
+      minWidth: 168
+      minHeight: 168
+      maxWidth: 360
+      maxHeight: 360
+      defaultWidth: 168
+      defaultHeight: 168
+optionalTools:
+  - calendar
+  - contacts
+  - slack
+  - flightaware
+  - perplexity
+  - exa
+triggers:
+  - type: cron
+    defaultSchedule: "*/15 * * * *"
+    entrypoint: checkWatches
+    name: Check Watches
+  - type: email
+    entrypoint: handleIncomingEmail
+    name: Incoming Email Monitor

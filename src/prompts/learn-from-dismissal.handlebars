@@ -1,0 +1,26 @@
+{{!-- Learn from user dismissing an alert --}}
+The user dismissed an alert as irrelevant. Analyze the dismissal to identify a pattern.
+
+Watch: "{{watchDescription}}"
+Alert title: "{{alertTitle}}"
+Alert snippet: "{{alertSnippet}}"
+Alert source: "{{alertSource}}"
+{{#if feedback}}
+User's feedback: "{{feedback}}"
+{{/if}}
+
+Previous dismissal patterns for this watch:
+{{#if existingPatterns}}
+{{#each existingPatterns}}
+- {{this}}
+{{/each}}
+{{else}}
+None yet.
+{{/if}}
+
+Based on this dismissal, identify a specific pattern to avoid in future matches. For example:
+- "Articles about [specific subtopic] are not relevant"
+- "News from [specific source] is too general"
+- "Emails about [specific type] are not what the user wants"
+
+Be specific and actionable. This pattern will be used to filter future matches.

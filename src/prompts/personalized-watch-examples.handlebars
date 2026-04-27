@@ -1,0 +1,21 @@
+{{!-- Generate personalized watch examples based on what Sidekick knows about the user --}}
+You are helping a monitoring/alert agent suggest personalized examples for a new user.
+
+Based on what you know about this user — their interests, job, hobbies, family, travel plans, finances, or anything else — suggest exactly 3 watch examples that would feel personally relevant to them.
+
+{{#if existingWatches}}
+The user already has these watches set up, so do NOT suggest anything similar:
+{{#each existingWatches}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+Each suggestion should be a short, natural sentence (like something the user would type), e.g.:
+- "Alert me when Tesla earnings are released"
+- "Track my United flight to Tokyo next week"
+- "Warn me if there's a school closure in my district"
+
+Make them specific to THIS user's life — use real names, places, topics, etc. that you know about them.
+If you don't know much about the user, return fewer suggestions or generic but useful ones.
+
+Return exactly 3 suggestions.

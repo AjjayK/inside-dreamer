@@ -1,0 +1,1 @@
+ALTER TABLE `watches` ADD `digest_time` text;
